@@ -75,7 +75,7 @@ class NumberForm extends StatelessWidget {
           ),
           child: GestureDetector(
             onTap: () {
-              if (numberController.text.length < 10 &&
+              if (numberController.text.length > 10 ||
                   numberController.text.length < 10) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('Enter 10 Digit number !')),

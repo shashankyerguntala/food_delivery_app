@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_delivery_app/core/constants/constants.dart';
-import 'package:food_delivery_app/features/cart/providers/cart_notifier.dart';
+import 'package:food_delivery_app/features/my_orders/providers/cart_notifier.dart';
 
 class FloatingCartButton extends ConsumerStatefulWidget {
   final VoidCallback onOrderTap;

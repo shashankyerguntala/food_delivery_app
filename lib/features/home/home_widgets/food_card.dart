@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_delivery_app/core/constants/constants.dart';
-import 'package:food_delivery_app/features/cart/providers/cart_notifier.dart';
+import 'package:food_delivery_app/features/my_orders/providers/cart_notifier.dart';
 import 'package:food_delivery_app/features/home/providers/home_notifier.dart';
 import 'package:food_delivery_app/models/food_model.dart';
 
@@ -35,20 +35,14 @@ class FoodCard extends ConsumerWidget {
           Stack(
             children: [
               Container(
-                padding: EdgeInsets.all(18),
+                height: 176,
+                padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(18),
                   border: isSelected
                       ? Border.all(color: const Color(0xff37B890), width: 2)
                       : Border.all(color: const Color(0xffE9F3FB), width: 2),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.shade100,
-                      blurRadius: 8,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
                 ),
                 child: ClipRRect(
                   borderRadius: const BorderRadius.vertical(

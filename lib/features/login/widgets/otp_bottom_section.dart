@@ -45,6 +45,12 @@ class _OtpBottomSectionState extends ConsumerState<OtpBottomSection> {
           child: ElevatedButton(
             onPressed: () {
               if (ref.read(otpProvider.notifier).validateOtp(otp)) {
+                if (isOtpFilled) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
+                }
               } else {
                 ScaffoldMessenger.of(
                   context,
@@ -55,12 +61,6 @@ class _OtpBottomSectionState extends ConsumerState<OtpBottomSection> {
                   const SnackBar(content: Text('Enter OTP first')),
                 );
                 return;
-              }
-              if (isOtpFilled) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                );
               }
             },
             style: ElevatedButton.styleFrom(
