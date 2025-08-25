@@ -1,78 +1,99 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_delivery_app/core/constants/constants.dart';
+import 'package:food_delivery_app/features/cart/providers/cart_notifier.dart';
 import 'package:food_delivery_app/features/home/providers/home_notifier.dart';
-
 import 'package:food_delivery_app/models/food_model.dart';
 
 class FoodCard extends ConsumerWidget {
   final FoodModel food;
-
-  final VoidCallback onTap;
-
-  const FoodCard({super.key, required this.food, required this.onTap});
+  final int index;
+  const FoodCard({super.key, required this.food, required this.index});
 
   @override
-  Widget build(BuildContext contex, WidgetRef ref) {
-    // Widget content;
-    // final state = ref.watch(selectionProvider);
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xffE9F3FB)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade100,
-            blurRadius: 8,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Stack(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedList = ref.watch(selectionProvider);
+    final isSelected = selectedList.contains(index);
+
+    return GestureDetector(
+      onTap: () {
+        ref.read(selectionProvider.notifier).update((state) {
+          final newSet = {...state};
+          if (newSet.contains(index)) {
+            newSet.remove(index);
+            ref.read(cartProvider.notifier).remove(food);
+          } else {
+            newSet.add(index);
+            ref.read(cartProvider.notifier).add(food);
+          }
+          return newSet;
+        });
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          Stack(
             children: [
-              Expanded(
+              Container(
+                padding: EdgeInsets.all(18),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(18),
+                  border: isSelected
+                      ? Border.all(color: const Color(0xff37B890), width: 2)
+                      : Border.all(color: const Color(0xffE9F3FB), width: 2),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade100,
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
                 child: ClipRRect(
                   borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(18),
                   ),
-                  child: Image(
-                    image: AssetImage(food.imageUrl),
-                    fit: BoxFit.cover,
+                  child: Image.asset(food.imageUrl, fit: BoxFit.cover),
+                ),
+              ),
+              if (isSelected)
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(12),
+                        topRight: Radius.circular(12),
+                      ),
+                    ),
+                    child: const Icon(
+                      Icons.check,
+                      color: Colors.white,
+                      size: 25,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                food.name,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                "Per Plate \$${food.price}",
-                style: TextStyle(fontSize: 13, color: Colors.grey[600]),
-              ),
-              const SizedBox(height: 8),
             ],
           ),
-
-          // if (true)
-          //   const Positioned(
-          //     top: 8,
-          //     right: 8,
-          //     child: CircleAvatar(
-          //       radius: 14,
-          //       backgroundColor: Colors.green,
-          //       child: Icon(Icons.check, size: 16, color: Colors.white),
-          //     ),
-          //   ),
+          const SizedBox(height: 8),
+          Text(
+            food.name,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: Constants().titleTextColor,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            "Per Plate \$${food.price}",
+            style: TextStyle(fontSize: 13, color: Constants().titleTextColor),
+          ),
         ],
       ),
     );
