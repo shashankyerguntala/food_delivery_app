@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_delivery_app/domain/entities/food_entity.dart';
+
+import 'package:food_delivery_app/domain/entities/food_model.dart';
 import 'package:food_delivery_app/domain/usecases/get_food_usecase.dart';
 import 'package:food_delivery_app/presentation/home/providers/home_states.dart';
 

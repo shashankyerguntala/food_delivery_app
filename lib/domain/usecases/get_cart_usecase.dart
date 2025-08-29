@@ -1,7 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:food_delivery_app/data/repository_impl/get_cart_repo_impl.dart';
-import 'package:food_delivery_app/domain/entities/food_entity.dart';
+
+import 'package:food_delivery_app/domain/entities/food_model.dart';
 import 'package:food_delivery_app/domain/repository/cart_repository.dart';
 
 class GetCartItemsUseCase {

@@ -1,4 +1,4 @@
-import 'package:food_delivery_app/domain/entities/food_entity.dart';
+import 'package:food_delivery_app/domain/entities/food_model.dart';
 
 class LocalDataSource {
   List<FoodEntity> food = [];
