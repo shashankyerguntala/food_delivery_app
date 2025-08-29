@@ -44,7 +44,7 @@ class _OtpBottomSectionState extends ConsumerState<OtpBottomSection> {
           height: 50,
           child: ElevatedButton(
             onPressed: () {
-              if (ref.read(otpProvider.notifier).validateOtp(otp)) {
+              if (ref.read(otpProvider.notifier).checkOtp(otp)) {
                 if (isOtpFilled) {
                   Navigator.push(
                     context,

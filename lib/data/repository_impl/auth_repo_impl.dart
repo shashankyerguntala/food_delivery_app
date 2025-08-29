@@ -11,6 +11,6 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 }
 
-final repoImplPrvoider = StateProvider<AuthRepository>(
+final authRepoImplPrvoider = Provider<AuthRepository>(
   (ref) => AuthRepositoryImpl(),
 );

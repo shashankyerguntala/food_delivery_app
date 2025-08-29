@@ -1,8 +1,10 @@
+import 'package:food_delivery_app/domain/usecases/auth_usecase.dart';
 import 'package:food_delivery_app/presentation/login/providers/otp_states.dart';
 import 'package:riverpod/riverpod.dart';
 
 class OtpNotifier extends StateNotifier<OtpState> {
-  OtpNotifier() : super(LoadingOtp()) {
+  final AuthUsecase authUsecase;
+  OtpNotifier(this.authUsecase) : super(LoadingOtp()) {
     loadOtp();
   }
 
@@ -11,16 +13,16 @@ class OtpNotifier extends StateNotifier<OtpState> {
     state = LoadedOtp();
   }
 
-  bool validateOtp(String s) {
-    if (s == '123456') {
-      return true;
-    }
-    return false;
+  bool checkOtp(String otp) {
+    final isValid = authUsecase(otp);
+
+    return isValid;
   }
 }
 
-final otpProvider = StateNotifierProvider<OtpNotifier, OtpState>(
-  (ref) => OtpNotifier(),
-);
+final otpProvider = StateNotifierProvider<OtpNotifier, OtpState>((ref) {
+  final authUsecase = ref.watch(authUseCaseProvider);
+  return OtpNotifier(authUsecase);
+});
 
 final otpValueProvider = StateProvider<String>((ref) => '');
