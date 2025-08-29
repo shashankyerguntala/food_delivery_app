@@ -1,56 +1,36 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_delivery_app/data/model/food_model.dart';
+import 'package:food_delivery_app/domain/usecases/get_cart_Usecase.dart';
 
 class CartNotifier extends StateNotifier<List<FoodModel>> {
-  CartNotifier() : super([]);
+  final GetCartItemsUseCase getCartItemsUseCase;
+  CartNotifier(this.getCartItemsUseCase) : super([]);
 
   void add(FoodModel food) {
-    final index = state.indexWhere((f) => f.id == food.id);
-
-    if (index == -1) {
-      state = [...state, food.copyWith(quantity: 1)];
-    } else {
-      incrementQuantity(food.id);
-    }
+    getCartItemsUseCase.addToCart(food);
+    state = [...getCartItemsUseCase.getCart()];
   }
 
   void remove(FoodModel food) {
-    state = state.where((f) => f.id != food.id).toList();
-  }
-
-  void clear() {
-    state = [];
+    getCartItemsUseCase.removeFromCart(food);
+    state = [...getCartItemsUseCase.getCart()];
   }
 
   void incrementQuantity(String id) {
-    state = state
-        .map(
-          (value) => value.id == id
-              ? value.copyWith(quantity: value.quantity + 1)
-              : value,
-        )
-        .toList();
+    getCartItemsUseCase.incrementQuant(id);
+    state = [...getCartItemsUseCase.getCart()];
   }
 
   void decrementQuantity(String id) {
-    state = state
-        .map((f) {
-          if (f.id == id) {
-            if (f.quantity > 1) {
-              return f.copyWith(quantity: f.quantity - 1);
-            } else {
-              return null;
-            }
-          }
-          return f;
-        })
-        .whereType<FoodModel>()
-        .toList();
+    getCartItemsUseCase.decrementQuant(id);
+    state = [...getCartItemsUseCase.getCart()];
   }
 }
 
 final cartProvider = StateNotifierProvider<CartNotifier, List<FoodModel>>((
   ref,
 ) {
-  return CartNotifier();
+  final getCartItemsUseCase = ref.read(getCartUsecaseProvider);
+
+  return CartNotifier(getCartItemsUseCase);
 });
