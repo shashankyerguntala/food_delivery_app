@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_delivery_app/domain/entities/food_entity.dart';
 import 'package:food_delivery_app/domain/usecases/get_food_usecase.dart';
 import 'package:food_delivery_app/presentation/home/providers/home_states.dart';
-import 'package:food_delivery_app/data/model/food_model.dart';
 
 class HomeNotifier extends StateNotifier<HomeStates> {
-  List<FoodModel> food = [];
-  List<FoodModel> cart = [];
+  List<FoodEntity> food = [];
+  List<FoodEntity> cart = [];
   final GetFoodUsecase getFoodUsecase;
   HomeNotifier(this.getFoodUsecase) : super(FoodLoading()) {
     foodLoading();
@@ -20,7 +20,7 @@ class HomeNotifier extends StateNotifier<HomeStates> {
     state = FoodLoaded();
   }
 
-  void foodSelected(FoodModel foodItem) {
+  void foodSelected(FoodEntity foodItem) {
     final index = cart.indexWhere((item) => item.id == foodItem.id);
     if (index != -1) {
       cart[index] = cart[index].copyWith(quantity: cart[index].quantity + 1);
@@ -30,12 +30,12 @@ class HomeNotifier extends StateNotifier<HomeStates> {
     state = FoodLoaded();
   }
 
-  void foodDiscarded(FoodModel foodItem) {
+  void foodDiscarded(FoodEntity foodItem) {
     cart.removeWhere((item) => item.id == foodItem.id);
     state = FoodLoaded();
   }
 
-  void incrementQuantity(FoodModel foodItem) {
+  void incrementQuantity(FoodEntity foodItem) {
     final index = cart.indexWhere((item) => item.id == foodItem.id);
     if (index != -1) {
       cart[index] = cart[index].copyWith(quantity: cart[index].quantity + 1);
@@ -43,7 +43,7 @@ class HomeNotifier extends StateNotifier<HomeStates> {
     }
   }
 
-  void decrementQuantity(FoodModel foodItem) {
+  void decrementQuantity(FoodEntity foodItem) {
     final index = cart.indexWhere((item) => item.id == foodItem.id);
     if (index != -1 && cart[index].quantity > 1) {
       cart[index] = cart[index].copyWith(quantity: cart[index].quantity - 1);

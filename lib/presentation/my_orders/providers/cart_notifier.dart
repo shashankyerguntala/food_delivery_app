@@ -1,17 +1,18 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_delivery_app/data/model/food_model.dart';
+
+import 'package:food_delivery_app/domain/entities/food_entity.dart';
 import 'package:food_delivery_app/domain/usecases/get_cart_Usecase.dart';
 
-class CartNotifier extends StateNotifier<List<FoodModel>> {
+class CartNotifier extends StateNotifier<List<FoodEntity>> {
   final GetCartItemsUseCase getCartItemsUseCase;
   CartNotifier(this.getCartItemsUseCase) : super([]);
 
-  void add(FoodModel food) {
+  void add(FoodEntity food) {
     getCartItemsUseCase.addToCart(food);
     state = [...getCartItemsUseCase.getCart()];
   }
 
-  void remove(FoodModel food) {
+  void remove(FoodEntity food) {
     getCartItemsUseCase.removeFromCart(food);
     state = [...getCartItemsUseCase.getCart()];
   }
@@ -27,7 +28,7 @@ class CartNotifier extends StateNotifier<List<FoodModel>> {
   }
 }
 
-final cartProvider = StateNotifierProvider<CartNotifier, List<FoodModel>>((
+final cartProvider = StateNotifierProvider<CartNotifier, List<FoodEntity>>((
   ref,
 ) {
   final getCartItemsUseCase = ref.read(getCartUsecaseProvider);

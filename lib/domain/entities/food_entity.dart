@@ -14,4 +14,22 @@ class FoodEntity {
     required this.category,
     this.quantity = 1,
   });
+
+  FoodEntity copyWith({
+    String? id,
+    String? name,
+    double? price,
+    String? imageUrl,
+    String? category,
+    int? quantity,
+  }) {
+    return FoodEntity(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      price: price ?? this.price,
+      imageUrl: imageUrl ?? this.imageUrl,
+      category: category ?? this.category,
+      quantity: quantity ?? this.quantity,
+    );
+  }
 }

@@ -1,15 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_delivery_app/data/model/food_model.dart';
+import 'package:food_delivery_app/domain/entities/food_entity.dart';
 import 'package:food_delivery_app/domain/repository/cart_repository.dart';
 
 class GetCartRepositoryImpl implements CartRepository {
-  final List<FoodModel> cart = [];
+  final List<FoodEntity> cart = [];
 
   @override
-  List<FoodModel> getCartItems() => cart;
+  List<FoodEntity> getCartItems() => cart;
 
   @override
-  void addToCart(FoodModel food) {
+  void addToCart(FoodEntity food) {
     final index = cart.indexWhere((f) => f.id == food.id);
 
     if (index == -1) {
@@ -20,7 +20,7 @@ class GetCartRepositoryImpl implements CartRepository {
   }
 
   @override
-  void removeFromCart(FoodModel food) {
+  void removeFromCart(FoodEntity food) {
     cart.removeWhere((f) => f.id == food.id);
   }
 

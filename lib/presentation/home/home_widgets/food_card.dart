@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_delivery_app/core/constants/constants.dart';
+import 'package:food_delivery_app/domain/entities/food_entity.dart';
 import 'package:food_delivery_app/presentation/my_orders/providers/cart_notifier.dart';
 import 'package:food_delivery_app/presentation/home/providers/home_notifier.dart';
-import 'package:food_delivery_app/data/model/food_model.dart';
 
 class FoodCard extends ConsumerWidget {
-  final FoodModel food;
+  final FoodEntity food;
   final int index;
   const FoodCard({super.key, required this.food, required this.index});
 

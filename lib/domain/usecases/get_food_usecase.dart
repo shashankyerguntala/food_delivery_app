@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_delivery_app/data/model/food_model.dart';
+
 import 'package:food_delivery_app/data/repository_impl/get_food_repo_impl.dart';
+import 'package:food_delivery_app/domain/entities/food_entity.dart';
 import 'package:food_delivery_app/domain/repository/food_repository.dart';
 
 class GetFoodUsecase {
@@ -8,7 +9,7 @@ class GetFoodUsecase {
 
   GetFoodUsecase({required this.getFoodRepo});
 
-  Future<List<FoodModel>> getFoodUsecase() async {
+  Future<List<FoodEntity>> getFoodUsecase() async {
     return await getFoodRepo.getFoodRepo();
   }
 }

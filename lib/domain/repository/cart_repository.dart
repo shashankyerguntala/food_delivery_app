@@ -1,9 +1,9 @@
-import 'package:food_delivery_app/data/model/food_model.dart';
+import 'package:food_delivery_app/domain/entities/food_entity.dart';
 
 abstract class CartRepository {
-  List<FoodModel> getCartItems();
-  void addToCart(FoodModel food);
-  void removeFromCart(FoodModel food);
+  List<FoodEntity> getCartItems();
+  void addToCart(FoodEntity food);
+  void removeFromCart(FoodEntity food);
 
   void incrementQuantity(String id);
   void decrementQuantity(String id);

@@ -1,5 +1,5 @@
-import 'package:food_delivery_app/data/model/food_model.dart';
+import 'package:food_delivery_app/domain/entities/food_entity.dart';
 
 abstract class GetFoodRepo {
-  Future<List<FoodModel>> getFoodRepo();
+  Future<List<FoodEntity>> getFoodRepo();
 }

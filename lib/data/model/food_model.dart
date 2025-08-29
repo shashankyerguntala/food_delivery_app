@@ -22,22 +22,4 @@ class FoodModel extends FoodEntity {
          imageUrl: imageUrl,
          category: category,
        );
-
-  FoodModel copyWith({
-    String? id,
-    String? name,
-    double? price,
-    String? imageUrl,
-    String? category,
-    int? quantity,
-  }) {
-    return FoodModel(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      price: price ?? this.price,
-      imageUrl: imageUrl ?? this.imageUrl,
-      category: category ?? this.category,
-      quantity: quantity ?? this.quantity,
-    );
-  }
 }
