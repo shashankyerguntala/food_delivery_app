@@ -13,6 +13,6 @@ class GetFoodUsecase {
   }
 }
 
-final usecaseProvider = StateProvider<GetFoodUsecase>(
+final usecaseProvider = Provider<GetFoodUsecase>(
   (ref) => GetFoodUsecase(getFoodRepo: ref.watch(repoImplPrvoider)),
 );

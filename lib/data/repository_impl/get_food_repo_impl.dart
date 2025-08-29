@@ -10,6 +10,6 @@ class GetFoodRepositoryImpl extends GetFoodRepo {
   }
 }
 
-final repoImplPrvoider = StateProvider<GetFoodRepo>(
+final repoImplPrvoider = Provider<GetFoodRepo>(
   (ref) => GetFoodRepositoryImpl(),
 );
