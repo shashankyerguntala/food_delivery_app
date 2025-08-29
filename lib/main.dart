@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:food_delivery_app/features/login/screen/login_screen.dart';
+import 'package:food_delivery_app/presentation/login/screen/login_screen.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
