@@ -30,7 +30,7 @@ class PreparingFoodScreen extends StatelessWidget {
               SizedBox(
                 width: 200,
                 child: Text(
-                  "Please do some streaching until chef is cooking your food..",
+                  "Please do some streching until chef is cooking your food..",
                   style: GoogleFonts.poppins(
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
