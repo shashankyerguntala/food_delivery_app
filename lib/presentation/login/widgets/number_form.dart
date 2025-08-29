@@ -45,7 +45,10 @@ class NumberForm extends StatelessWidget {
 
                 Expanded(
                   child: TextField(
-                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      LengthLimitingTextInputFormatter(10),
+                    ],
                     keyboardType: TextInputType.number,
 
                     controller: numberController,

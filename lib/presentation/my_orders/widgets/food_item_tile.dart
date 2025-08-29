@@ -81,7 +81,7 @@ class FoodItemTile extends StatelessWidget {
         SizedBox(
           width: 70,
           child: Text(
-            "\$ ${(price * quantity).toStringAsFixed(2)}",
+            "\$${(price * quantity).toStringAsFixed(1)}",
             textAlign: TextAlign.right,
             style: const TextStyle(
               fontSize: 16,

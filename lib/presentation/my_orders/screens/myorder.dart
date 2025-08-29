@@ -35,58 +35,60 @@ class _MyorderState extends ConsumerState<Myorder> {
 
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 10),
+              padding: const EdgeInsets.fromLTRB(12, 12, 12, 120),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 10),
 
-                  Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () => Navigator.pop(context),
-                        child: Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.arrow_back,
-                                size: 22,
-                                color: Constants().titleTextColor,
-                              ),
-                              SizedBox(width: 6),
-                              Text(
-                                "Back",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () => Navigator.pop(context),
+                          child: Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.arrow_back,
+                                  size: 22,
                                   color: Constants().titleTextColor,
                                 ),
-                              ),
-                            ],
+                                SizedBox(width: 6),
+                                Text(
+                                  "Back",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Constants().titleTextColor,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
 
-                  const SizedBox(height: 20),
+                    const SizedBox(height: 20),
 
-                  Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Text(
-                      "My Orders",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Constants().titleTextColor,
+                    Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text(
+                        "My Orders",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Constants().titleTextColor,
+                        ),
                       ),
                     ),
-                  ),
-                  ApplyCouponCard(),
-                  OrderSummaryCard(deliveryFee: 0),
-                  DeliveryAddress(),
-                ],
+                    ApplyCouponCard(),
+                    OrderSummaryCard(deliveryFee: 0),
+                    DeliveryAddress(),
+                  ],
+                ),
               ),
             ),
           ),
